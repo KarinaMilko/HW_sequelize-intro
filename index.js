@@ -8,6 +8,7 @@ const { sequelize, Phone } = require("./models");
 
 (async function () {
   try {
+    const currentYear = new Date().getFullYear();
     const phones = {
       model: "	Xiaomi",
       brand: "Mi12",
@@ -36,15 +37,18 @@ const { sequelize, Phone } = require("./models");
 
     // *отримання списку телефонів поточного року видання
 
-    // const phonesThisYear = await Phone.findAll({
-    //   where: {
-    //     realizeDate: {
-    //       [Op.between]: ["2024-01-01", "2024-12-31"],
-    //     },
-    //   },
-    //   raw: true,
-    // });
-    // console.log(phonesThisYear);
+    const phonesThisYear = await Phone.findAll({
+      where: {
+        realizeDate: {
+          [Op.between]: [
+            new Date(currentYear, 0, 1),
+            new Date(currentYear, 11, 31),
+          ],
+        },
+      },
+      raw: true,
+    });
+    console.log(phonesThisYear);
 
     // *отримання списку телефонів старше 2022 року випуску
 
@@ -93,14 +97,14 @@ const { sequelize, Phone } = require("./models");
 
     // *видалення телефонів 2015 року випуску.
 
-    const deletedPhone = await Phone.destroy({
-      where: {
-        realizeDate: {
-          [Op.between]: ["2020-01-01", "2020-12-31"],
-        },
-      },
-    });
-    console.log(deletedPhone);
+    // const deletedPhone = await Phone.destroy({
+    //   where: {
+    //     realizeDate: {
+    //       [Op.between]: ["2020-01-01", "2020-12-31"],
+    //     },
+    //   },
+    // });
+    // console.log(deletedPhone);
 
     // **вивести середній розмір оперативної пам'яті телефонів
 
@@ -113,8 +117,8 @@ const { sequelize, Phone } = require("./models");
     // **вивести кількість телефонів кожної марки.
 
     // const foundPhones = await Phone.findAll({
-    //   attributes: ["model", sequelize.fn("COUNT", sequelize.col("id"))],
-    //   group: "model",
+    //   attributes: ["brand", sequelize.fn("COUNT", sequelize.col("id"))],
+    //   group: "brand",
     //   raw: true,
     // });
     // console.log(foundPhones);
