@@ -1,9 +1,6 @@
 const http = require("node:http");
 const app = require("./app");
 
-// const { Op } = require("sequelize");
-// const { sequelize, Phone } = require("./models");
-
 const PORT = process.env.PORT || 5000;
 const HOST = process.env.HOST || "127.0.0.1";
 
@@ -11,6 +8,9 @@ const httpServer = http.createServer(app);
 httpServer.listen(PORT, HOST, () =>
   console.log(`Server is listening http://${HOST}:${PORT}`)
 );
+
+// const { Op } = require("sequelize");
+// const { sequelize, Phone } = require("./models");
 
 // sequelize
 //   .sync({ force: true })
