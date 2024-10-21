@@ -1,0 +1,16 @@
+###200 {phone}
+PATCH http://localhost:5000/api/phones/1
+Content-Type: application/json
+
+{
+  "brand": "GOOGLE"
+}
+
+### 404 Not Found
+PATCH http://localhost:5000/api/phones/1000
+Content-Type: application/json
+
+{
+  "brand": "GOOGLE"
+}
+

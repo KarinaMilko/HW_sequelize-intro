@@ -58,7 +58,7 @@ module.exports = (sequelize, DataTypes) => {
           min: 2,
         },
       },
-      isnfc: {
+      isNfc: {
         type: DataTypes.BOOLEAN,
         allowNull: true,
       },
@@ -66,7 +66,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "Phone",
-      underscored:true,
+      underscored: true,
     }
   );
   return Phone;

@@ -1,0 +1,28 @@
+### 201 {phone}
+POST http://localhost:5000/api/phones
+Content-Type: application/json
+
+{
+    "model": "Redmi Note 11",
+    "brand": "Xiaomi",
+    "realizeDate": "2024-01-17",
+    "ramSize": 6,
+    "processor": "Snapdragon 678",
+    "screenSize": 6.43,
+    "isNfc": true
+}
+
+### 500 model valid error
+POST http://localhost:5000/api/phones
+Content-Type: application/json
+
+{
+    "model": "Redmi Note 11",
+    "brand": "Xiaomi",
+    "realizeDate": "2025-01-17",
+    "ramSize": 6,
+    "processor": "Snapdragon 678",
+    "screenSize": 6.43,
+    "isNfc": true
+}
+

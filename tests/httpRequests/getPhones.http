@@ -1,0 +1,4 @@
+### 200 [users]
+
+GET http://localhost:5000/api/phones?page=2&results=4
+

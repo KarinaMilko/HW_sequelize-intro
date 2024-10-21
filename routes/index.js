@@ -1,8 +1,8 @@
-const {Router} = require('exports');
-const phonesRouter = require('./phonesRouter');
+const { Router } = require("express");
+const phonesRouter = require("./phonesRouter");
 
-const router=Router()
+const router = Router();
 
-router.use('/phones',phonesRouter)
+router.use("/phones", phonesRouter);
 
-module.exports=router
+module.exports = router;

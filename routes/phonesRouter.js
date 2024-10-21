@@ -1,18 +1,17 @@
 const { Router } = require("express");
+const { phonesController } = require("./../controllers");
 
 const phonesRouter = Router();
 
 phonesRouter
   .route("/")
-  .post(() => {})
-  .get((req, res, next) => {
-    res.status(501).send("Not Implemented phones");
-  });
+  .post(phonesController.createPhone)
+  .get(phonesController.getPhones);
 
 phonesRouter
   .route("/:phoneId")
-  .get(() => {})
-  .patch(() => {})
-  .delete(() => {});
+  .get(phonesController.getPhoneById)
+  .patch(phonesController.updatePhoneById)
+  .delete(phonesController.deletePhoneById);
 
 module.exports = phonesRouter;

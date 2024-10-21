@@ -17,11 +17,11 @@ module.exports = {
         type: Sequelize.STRING(50),
         allowNull: false,
       },
-      realizeDate: {
+      realize_date: {
         type: Sequelize.DATEONLY,
         allowNull: false,
       },
-      ramSize: {
+      ram_size: {
         type: Sequelize.INTEGER,
         allowNull: false,
       },
@@ -29,28 +29,28 @@ module.exports = {
         type: Sequelize.STRING,
         allowNull: true,
       },
-      screenSize: {
+      screen_size: {
         type: Sequelize.FLOAT,
         allowNull: false,
       },
-      isNfc: {
+      is_nfc: {
         type: Sequelize.BOOLEAN,
         allowNull: true,
       },
-      createdAt: {
+      created_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      updatedAt: {
+      updated_at: {
         allowNull: false,
         type: Sequelize.DATE,
       },
     });
     await queryInterface.addConstraint("phones", {
-      fields: ["realizeDate"],
+      fields: ["realize_date"],
       type: "check",
       where: {
-        realizeDate: {
+        realize_date: {
           [Sequelize.Op.lte]: Sequelize.literal("CURRENT_DATE"),
         },
       },
