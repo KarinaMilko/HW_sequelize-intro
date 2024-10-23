@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
           name: "phoneId",
           allowNull: false,
         },
-        onUpdate: "CASCSDE",
+        onUpdate: "CASCADE",
         onDelete: "CASCADE",
       });
     }
@@ -28,7 +28,7 @@ module.exports = (sequelize, DataTypes) => {
         },
       },
       status: {
-        type: DataTypes.STRING.ENUM("pending", "confirmed", "done"),
+        type: DataTypes.ENUM("pending", "confirmed", "done"),
         allowNull: false,
         validate: {
           isIn: ["pending", "confirmed", "done"],
@@ -40,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
       },
       customerPhone: {
         type: DataTypes.STRING(13),
-        unique,
+        unique: true,
         allowNull: false,
         validate: {
           is: /^\+380\d{9}$|^0\d{9}$/,
