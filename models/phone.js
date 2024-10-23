@@ -8,7 +8,14 @@ module.exports = (sequelize, DataTypes) => {
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+      Phone.hasMany(models.Preorder, {
+        foreignKey: {
+          name: "phoneId",
+          allowNull: false,
+        },
+        onUpdate: "CASCSDE",
+        onDelete: "CASCADE",
+      });
     }
   }
   Phone.init(
