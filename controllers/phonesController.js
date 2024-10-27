@@ -120,3 +120,33 @@ module.exports.getPhonesPreorders = async (req, res, next) => {
     next(error);
   }
 };
+
+module.exports.updateImage = async (req, res, next) => {
+  // console.log(req.body);
+  // console.log(req.file);
+  const {
+    file,
+    params: { phoneId },
+  } = req;
+
+  try {
+    if (!file) {
+      return next(createHttpError(422, "Image is Required"));
+    }
+
+    const [, [updatedPhone]] = await Phone.update(
+      { image: "images/" + file.filename },
+      { where: { id: phoneId }, returning: true, raw: true }
+    );
+
+    if (!updatedPhone) {
+      return next(createHttpError(404, "Phone Not Found"));
+    }
+
+    const prepatedPhone = _.omit(updatedPhone, ["createdAt", "updatedAt"]);
+
+    res.status(200).send({ data: prepatedPhone });
+  } catch (error) {
+    next(error);
+  }
+};

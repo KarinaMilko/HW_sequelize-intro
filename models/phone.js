@@ -69,6 +69,9 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.BOOLEAN,
         allowNull: true,
       },
+      image: {
+        type: DataTypes.STRING,
+      },
     },
     {
       sequelize,

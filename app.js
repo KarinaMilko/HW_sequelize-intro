@@ -1,10 +1,13 @@
 const express = require("express");
 const { errorHandlers } = require("./middleware");
 const router = require("./routes");
+const { STATIC_PATH } = require("./constants");
 
 const app = express();
 
 app.use(express.json());
+// app.use(express.static(path.resolve(process.env.STATIC_FOLDER)));
+app.use(express.static(STATIC_PATH));
 app.use("/api", router);
 app.use(errorHandlers.errorHandler);
 
