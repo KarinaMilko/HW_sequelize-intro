@@ -1,6 +1,6 @@
 const _ = require("lodash");
 const createHttpError = require("http-errors");
-const { Phone } = require("../models");
+const { Phone } = require("../../../models");
 
 module.exports.createPhone = async (req, res, next) => {
   const { body } = req;

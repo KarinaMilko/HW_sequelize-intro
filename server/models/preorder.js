@@ -31,7 +31,7 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.ENUM("pending", "confirmed", "done"),
         allowNull: false,
         validate: {
-          isIn: ["pending", "confirmed", "done"],
+          isIn: [["pending", "confirmed", "done"]],
         },
       },
       quantity: {
