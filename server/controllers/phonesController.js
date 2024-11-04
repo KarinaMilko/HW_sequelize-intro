@@ -20,10 +20,19 @@ module.exports.createPhone = async (req, res, next) => {
 };
 
 module.exports.getPhones = async (req, res, next) => {
+  const { query } = req;
+
+  const where = {};
+
+  if (query.brand) {
+    where.brandId = query.brand;
+  }
+
   try {
     const foundPhones = await Phone.findAll({
       attributes: { exclude: ["updatedAt", "createdAt"] },
       raw: true,
+      where,
     });
     res.status(200).send({ data: foundPhones });
   } catch (error) {

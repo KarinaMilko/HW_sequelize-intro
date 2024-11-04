@@ -8,6 +8,9 @@ const initialState = {
   preorders: [],
   isFetching: false,
   error: null,
+  filter: {
+    brand: null,
+  },
 };
 
 export const getPhonesThunk = createAsyncThunk(
@@ -53,6 +56,11 @@ export const removePhoneThunk = createAsyncThunk(
 const phonesSlice = createSlice({
   name: PHONE_SLICE_NAME,
   initialState,
+  reducers: {
+    changePhoneBrandFilter: (state, { payload }) => {
+      state.filter.brand = payload;
+    },
+  },
   extraReducers: (builder) => {
     builder.addCase(getPhonesThunk.pending, (state) => {
       state.isFetching = true;
@@ -104,6 +112,8 @@ const phonesSlice = createSlice({
   },
 });
 
-const { reducer } = phonesSlice;
+const { reducer, actions } = phonesSlice;
+
+export const { changePhoneBrandFilter } = actions;
 
 export default reducer;
