@@ -1,6 +1,6 @@
 const _ = require("lodash");
 const createHttpError = require("http-errors");
-const { Phone } = require("../../../models");
+const { Phone } = require("./../models");
 
 module.exports.createPhone = async (req, res, next) => {
   const { body } = req;
@@ -18,20 +18,11 @@ module.exports.createPhone = async (req, res, next) => {
     next(error);
   }
 };
+
 module.exports.getPhones = async (req, res, next) => {
-  const {
-    query: { page, results },
-  } = req;
-
-  const limit = results;
-  const offset = (page - 1) * results;
-
   try {
     const foundPhones = await Phone.findAll({
       attributes: { exclude: ["updatedAt", "createdAt"] },
-      limit,
-      offset,
-      order: ["id"],
       raw: true,
     });
     res.status(200).send({ data: foundPhones });
@@ -39,6 +30,28 @@ module.exports.getPhones = async (req, res, next) => {
     next(error);
   }
 };
+
+// module.exports.getPhones = async (req, res, next) => {
+//   const {
+//     query: { page, results },
+//   } = req;
+
+//   const limit = results;
+//   const offset = (page - 1) * results;
+
+//   try {
+//     const foundPhones = await Phone.findAll({
+//       attributes: { exclude: ["updatedAt", "createdAt"] },
+//       limit,
+//       offset,
+//       order: ["id"],
+//       raw: true,
+//     });
+//     res.status(200).send({ data: foundPhones });
+//   } catch (error) {
+//     next(error);
+//   }
+// };
 
 module.exports.getPhoneById = async (req, res, next) => {
   const {

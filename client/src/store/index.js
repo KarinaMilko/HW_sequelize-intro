@@ -3,7 +3,7 @@ import phonesReducer from "./slices/phonesSlice";
 
 const store = configureStore({
   reducer: {
-    phonesdata: phonesReducer,
+    phonesData: phonesReducer,
   },
 });
 

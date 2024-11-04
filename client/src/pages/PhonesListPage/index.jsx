@@ -1,5 +1,12 @@
+import PhonesList from "../../components/PhonesList";
+
 function PhonesListPage() {
-  return <div>PhonesListPage</div>;
+  return (
+    <>
+      <h1>Phones</h1>
+      <PhonesList />
+    </>
+  );
 }
 
 export default PhonesListPage;

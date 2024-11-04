@@ -1,7 +1,13 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field } from "formik";
+import { useEffect } from "react";
+import { connect } from "react-redux";
+import {
+  createPhonesThunk,
+  getPhonesThunk,
+} from "../../store/slices/phonesSlice";
 
 const NFC = ["nfc", "without nfc"];
-function PhoneForm() {
+function PhoneForm({ getPhones, createPhone }) {
   const initialValues = {
     model: "",
     brand: "",
@@ -14,9 +20,13 @@ function PhoneForm() {
   };
 
   const handleSubmit = (values, formikBag) => {
-    console.log(values);
+    createPhone(values);
     formikBag.resetForm();
   };
+
+  useEffect(() => {
+    getPhones();
+  }, []);
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
@@ -74,4 +84,11 @@ function PhoneForm() {
   );
 }
 
-export default PhoneForm;
+const mapStateToProps = ({ phonesData: phones }) => ({ phones });
+
+const mapDispatchToProps = (dispatch) => ({
+  getPhones: () => dispatch(getPhonesThunk()),
+  createPhone: (values) => dispatch(createPhonesThunk(values)),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PhoneForm);

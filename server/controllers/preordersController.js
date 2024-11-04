@@ -1,4 +1,4 @@
-const { Phone, Preorder } = require("../../../models");
+const { Phone, Preorder } = require("./../models");
 
 module.exports.getPreorders = async (req, res, next) => {
   try {
