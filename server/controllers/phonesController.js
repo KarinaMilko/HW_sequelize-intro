@@ -1,11 +1,20 @@
+const path = require("node:path");
 const _ = require("lodash");
 const createHttpError = require("http-errors");
 const { Phone } = require("./../models");
+const { STATIC_IMAGES_FOLDER } = require("../constants");
 
 module.exports.createPhone = async (req, res, next) => {
-  const { body } = req;
+  const { body, file } = req;
+
+  if (file) {
+    body.image = path.join(STATIC_IMAGES_FOLDER, file.filename);
+  }
 
   try {
+    console.log("req.body :>> ", req.body);
+    console.log("req.file :>> ", req.file);
+
     const createdPhone = await Phone.create(body);
 
     const prepatedPhone = _.omit(createdPhone.get(), [

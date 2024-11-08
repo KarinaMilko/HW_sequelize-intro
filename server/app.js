@@ -9,9 +9,11 @@ const app = express();
 app.use(cors({ origin: "*" }));
 
 app.use(express.json());
-// app.use(express.static(path.resolve(process.env.STATIC_FOLDER)));
+
 app.use(express.static(STATIC_PATH));
+
 app.use("/api", router);
+
 app.use(errorHandlers.errorHandler);
 
 module.exports = app;

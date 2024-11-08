@@ -1,6 +1,8 @@
 const path = require("node:path");
 const multer = require("multer");
-require("dotenv").config();
+const fs = require("node:fs");
+const createHttpError = require("http-errors");
+const { STATIC_IMAGES_PATH } = require("../constants");
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -19,4 +21,4 @@ function fileFilter(req, file, cb) {
 
 const upload = multer({ storage, fileFilter });
 
-module.exports.uploadPhonePhoto = upload.single("phonePhoto");
+module.exports.uploadPhonePhoto = upload.single("image");

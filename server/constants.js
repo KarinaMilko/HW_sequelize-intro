@@ -1,4 +1,5 @@
 const path = require("node:path");
+require("dotenv").config();
 
 const STATIC_FOLDER = path.resolve(process.env.STATIC_FOLDER); // "public"
 const STATIC_IMAGES_FOLDER = "images";

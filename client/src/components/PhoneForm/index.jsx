@@ -6,7 +6,6 @@ import {
   getPhonesThunk,
 } from "../../store/slices/phonesSlice";
 
-const NFC = ["nfc", "without nfc"];
 function PhoneForm({ getPhones, createPhone }) {
   const initialValues = {
     model: "",
@@ -15,18 +14,29 @@ function PhoneForm({ getPhones, createPhone }) {
     ramSize: "",
     processor: "",
     screenSize: "",
-    isNfc: "",
-    image: false,
+    isNfc: null,
+    image: "",
   };
 
   const handleSubmit = (values, formikBag) => {
-    createPhone(values);
+    const formData = new FormData();
+
+    formData.append("model", values.model);
+    formData.append("brand", values.brand);
+    formData.append("realizeDate", values.realizeDate);
+    formData.append("ramSize", values.ramSize);
+    formData.append("processor", values.processor);
+    formData.append("screenSize", values.screenSize);
+    formData.append("isNfc", values.isNfc);
+    formData.append("image", values.image);
+
+    createPhone(formData);
     formikBag.resetForm();
   };
 
   useEffect(() => {
     getPhones();
-  }, []);
+  }, [getPhones]);
 
   return (
     <Formik initialValues={initialValues} onSubmit={handleSubmit}>
@@ -73,8 +83,13 @@ function PhoneForm({ getPhones, createPhone }) {
           </label>
           <br />
           <label>
-            Image:
-            <Field name="image" type="checkbox" />
+            <input
+              name="image"
+              type="file"
+              onChange={(e) => {
+                formikProps.setFieldValue("image", e.target.files[0]);
+              }}
+            />
           </label>
           <br />
           <button type="submit">Add</button>
@@ -84,11 +99,9 @@ function PhoneForm({ getPhones, createPhone }) {
   );
 }
 
-const mapStateToProps = ({ phonesData: phones }) => ({ phones });
-
 const mapDispatchToProps = (dispatch) => ({
   getPhones: () => dispatch(getPhonesThunk()),
   createPhone: (values) => dispatch(createPhonesThunk(values)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PhoneForm);
+export default connect(null, mapDispatchToProps)(PhoneForm);

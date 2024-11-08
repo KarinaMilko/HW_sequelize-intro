@@ -28,7 +28,7 @@ export const getPhonesThunk = createAsyncThunk(
 );
 
 export const createPhonesThunk = createAsyncThunk(
-  `${PHONE_SLICE_NAME}/create`,
+  `${PHONE_SLICE_NAME}/post`,
   async (payload, { rejectWithValue }) => {
     try {
       const {

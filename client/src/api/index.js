@@ -3,7 +3,7 @@ import queryString from "query-string";
 
 const httpClient = axios.create({ baseURL: "http://localhost:5000/api" });
 
-export const createPhone = (values) => httpClient.post("/phones", values);
+export const createPhone = (body) => httpClient.post("/phones", body);
 
 export const getPhones = (filter) =>
   httpClient.get(`/phones?${queryString.stringify(filter)}`);

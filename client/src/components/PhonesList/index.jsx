@@ -5,17 +5,16 @@ import {
   getPhonesThunk,
   removePhoneThunk,
 } from "../../store/slices/phonesSlice";
+import defImage from "./defaultImage.jpg";
+import styles from "./PhonesList.module.sass";
 
-function PhonesList({
+export const PhonesList = ({
   phones,
   filter,
-  preorders,
-  isFetching,
-  error,
   getPhones,
   removePhone,
   changePhoneBrand,
-}) {
+}) => {
   useEffect(() => {
     getPhones(filter);
   }, [filter, getPhones]);
@@ -47,7 +46,16 @@ function PhonesList({
             .filter((p) => (brand ? p.brand === brand : true))
             .map((p) => (
               <li key={p.id}>
-                <p>Photo: {p.image}</p>
+                <img
+                  className={styles.phoneImage}
+                  src={
+                    p.image
+                      ? `http://localhost:5000/images/${p.image}`
+                      : defImage
+                  }
+                  alt={`${p.brand} ${p.model}`}
+                />
+
                 <p>Brand: {p.brand}</p>
                 <p>Model: {p.model}</p>
                 <p>Realize date: {p.realizeDate}</p>
@@ -62,7 +70,7 @@ function PhonesList({
       </section>
     </>
   );
-}
+};
 
 const mapStateToProps = ({ phonesData }) => phonesData;
 
