@@ -48,11 +48,7 @@ export const PhonesList = ({
               <li key={p.id}>
                 <img
                   className={styles.phoneImage}
-                  src={
-                    p.image
-                      ? `http://localhost:5000/images/${p.image}`
-                      : defImage
-                  }
+                  src={p.image ? `http://localhost:5000/${p.image}` : defImage}
                   alt={`${p.brand} ${p.model}`}
                 />
 

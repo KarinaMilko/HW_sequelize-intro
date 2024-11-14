@@ -34,7 +34,7 @@ module.exports.getPhones = async (req, res, next) => {
   const where = {};
 
   if (query.brand) {
-    where.brandId = query.brand;
+    where.brand = query.brand;
   }
 
   try {
