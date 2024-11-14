@@ -1,0 +1,9 @@
+.prettierrc.json
+
+.vscode/
+
+.git/
+
+.gitignore
+
+node_modules/
